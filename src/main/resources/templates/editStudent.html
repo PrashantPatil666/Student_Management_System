@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Student Data</title>
+    <!-- Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="https://jsdelivr.net">
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 card p-4 shadow-sm">
+            <h2 class="text-center mb-4 text-primary">Update Student Details</h2>
+
+            <!-- Form points to the update mapping URL dynamically adding the student id -->
+            <form th:action="@{/students/update/{id}(id=${student.id})}" th:object="${student}" method="POST">
+
+                <!-- Hidden input field to preserve the ID during submission -->
+                <input type="hidden" th:field="*{id}" />
+
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text"
+                           id="firstName"
+                           th:field="*{firstName}"
+                           class="form-control"
+                           placeholder="Enter First Name"
+                           required />
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text"
+                           id="lastName"
+                           th:field="*{lastName}"
+                           class="form-control"
+                           placeholder="Enter Last Name"
+                           required />
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email"
+                           id="email"
+                           th:field="*{email}"
+                           class="form-control"
+                           placeholder="Enter Email Address"
+                           required />
+                </div>
+
+                <div class="box-footer mt-4">
+                    <button type="submit" class="btn btn-success btn-block">Update Details</button>
+                    <a th:href="@{/students}" class="btn btn-secondary btn-block">Cancel</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

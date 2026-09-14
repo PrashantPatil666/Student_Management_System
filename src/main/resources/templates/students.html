@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student List</title>
+    <link rel="stylesheet" href="https://jsdelivr.net">
+</head>
+<body>
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Student Dashboard</h2>
+        <!-- FIXED: Explicit path mapping to the /students/new GET endpoint -->
+        <a th:href="@{/students/new}" class="btn btn-primary">Add New Student</a>
+    </div>
+
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th class="text-center">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student : ${students}">
+            <td th:text="${student.firstName}"></td>
+            <td th:text="${student.lastName}"></td>
+            <td th:text="${student.email}"></td>
+            <td class="text-center">
+                <!-- Edit button works -->
+                <a th:href="@{/students/edit/{id}(id=${student.id})}" class="btn btn-sm btn-info mr-2">Edit</a>
+                <!-- FIXED: Explicit mapping syntax matching your controller's delete method -->
+                <a th:href="@{/students/delete/{id}(id=${student.id})}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
