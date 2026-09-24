@@ -1,6 +1,7 @@
 package com.StudentManagementSystem.controller;
 
 //import ch.qos.logback.core.model.Model;
+import jakarta.validation.Valid;
 import org.springframework.ui.Model;
 import com.StudentManagementSystem.entity.Student;
 import com.StudentManagementSystem.service.StudentService;
@@ -36,7 +37,7 @@ public class Controller {
 //----------------------------------------------------------------------------
 
     @GetMapping("/students/new")
-    public String createNewStudent(Model model){
+    public String createNewStudent(@Valid Model model){
 
         Student student = new Student();
         model.addAttribute("student", student);

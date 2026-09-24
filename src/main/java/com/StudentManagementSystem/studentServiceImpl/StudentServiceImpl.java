@@ -1,5 +1,6 @@
 package com.StudentManagementSystem.studentServiceImpl;
 import com.StudentManagementSystem.entity.Student;
+import com.StudentManagementSystem.exception.StdNotFoundException;
 import com.StudentManagementSystem.repository.StudentRepository;
 import com.StudentManagementSystem.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,8 @@ public class StudentServiceImpl implements StudentService {
 
      @Override
     public Student getStudentById(Integer id){
-        return studentRepository.findById(id).orElse(null);
+        return studentRepository.findById(id).
+                orElseThrow(() -> new StdNotFoundException("Student Not Found with Id : " + id));
      }
 
      @Override
